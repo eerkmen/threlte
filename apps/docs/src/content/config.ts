@@ -81,10 +81,12 @@ export const referenceCollection = defineCollection({
   })
 })
 
+// Define the schema for the 'learn' content collection
 export const learnCollection = defineCollection({
+	 // Specify each field in the learn content type along with its constraints
   schema: z.object({
-    schemaType: z.string().default('learn'),
-    category: z.enum(['Getting Started', 'Basics', 'Advanced', 'More', 'Preprocessing']),
+    schemaType: z.string().default('learn'),// Default value for schema type is 'learn'
+    category: z.enum(['Getting Started', 'Basics', 'Advanced', 'More', 'Preprocessing']),// Enum for categories
     isDivider: z.boolean().optional(),
     title: z.string(),
     order: z.number().optional(),
