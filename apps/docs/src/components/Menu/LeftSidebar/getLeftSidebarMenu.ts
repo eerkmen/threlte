@@ -57,13 +57,18 @@ const learnSidebarMenuCategoryOrder: LearnCategoryKey[] = [
   'Preprocessing'
 ]
 
+// Asynchronous function to fetch and structure the Learn sidebar menu
 const getLearnSidebarMenu = async (): Promise<LeftSidebarMenu> => {
-  const learnCollection = await getCollection('learn')
+   // Fetch the 'learn' content collection
+	const learnCollection = await getCollection('learn')
 
+	 // Extract unique category names from the learn collection
   const categoryNames = [...new Set(learnCollection.map((item) => item.data.category))]
 
+	// Map each category name to a LeftSidebarMenuCategory
   const categories = categoryNames.map((category): LeftSidebarMenuCategory => {
-    const menuItems = learnCollection
+     // Filter and sort the menu items based on the current category
+		const menuItems = learnCollection
       .filter((item) => item.data.showInSidebar && item.data.category === category)
       .sort((a, b) => (a.data.order || 0) - (b.data.order || 0))
       .map((item): LeftSidebarMenuItem => {
@@ -80,6 +85,7 @@ const getLearnSidebarMenu = async (): Promise<LeftSidebarMenu> => {
     }
   })
 
+	 // Sort categories based on predefined order
   categories.sort((a, b) => {
     return (
       learnSidebarMenuCategoryOrder.indexOf(a.title as LearnCategoryKey) -
