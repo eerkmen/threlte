@@ -140,9 +140,11 @@ const getExamplesSidebarMenu = async (): Promise<LeftSidebarMenu> => {
   }
 }
 
+// Exporting the function to fetch the Left Sidebar Menu for different sections
 export const getLeftSidebarMenu = async (): Promise<
   Record<'learn' | 'reference' | 'examples', LeftSidebarMenu>
 > => {
+	 // Fetch menus for each section
   const reference = await getReferenceSidebarMenu()
   const learn = await getLearnSidebarMenu()
   const examples = await getExamplesSidebarMenu()
