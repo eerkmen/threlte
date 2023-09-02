@@ -48,6 +48,7 @@ const getReferenceSidebarMenu = async (): Promise<LeftSidebarMenu> => {
 
 type LearnCategoryKey = CollectionEntry<'learn'>['data']['category']
 
+// Define the order in which Learn Categories should appear in the sidebar
 const learnSidebarMenuCategoryOrder: LearnCategoryKey[] = [
   'Getting Started',
   'Basics',
